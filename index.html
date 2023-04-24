@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Document</title>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+
+  <script src="./components/pinCreator.js"></script>
+  <script src="./components/throw.js"></script>
+</head>
+<body>
+  <a-scene id="scene">
+    <!-- Sky -->
+    <a-sky color="grey"></a-sky>
+
+    <!-- Asset Loading -->
+    <a-assets>
+      <a-asset-item id="pinModel" src="./assets/pin.glb"></a-asset-item>
+    </a-assets>
+
+    <!-- Bowling Lane -->
+    <a-entity id="bowling-lane" position="0 0 -6" pin-creator>
+      <a-plane id="lane" color="pink" position="0 0 -10" rotation="-90 0 0" scale="4 40" static-body></a-plane>
+      <a-box id="barrier-right" color="tomato" position="2 0 -10" scale="0.5 0.5 40" static-body></a-box>
+      <a-box id="barrier-left" color="tomato" position="-2 0 -10" scale="0.5 0.5 40" static-body></a-box>
+    </a-entity>
+
+    <!-- Balls -->
+    <a-entity throw></a-entity>
+
+    <!-- Camera Rig  and Bowling Ball-->
+    <a-entity id='cameraRig' position="0 1 0" rotation="0 0 0">
+      <a-entity id="camera" camera position="0 1.6 0" look-controls="pointerLockEnabled: false" wasd-controls>
+        <a-entity id="bowling-ball" geometry="primitive: sphere" material="color: black" position="0 -1 -2" rotation="0 0 0" scale=".5 .5 .5">
+        </a-entity>
+        <a-cursor></a-cursor>
+      </a-entity>    
+    </a-entity>
+  </a-scene>
+</body>
+</html>
